@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    tools:context="com.example.sample.MainActivity$PlaceholderFragment" >
+    <EditText
+        android:id="@+id/selectAddress"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+
+        android:layout_marginEnd="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingEnd="10dp"
+        android:editable="false"
+        android:text="@string/confirmorder"
+        android:textColor="@color/inactive"
+        android:background="@color/labelgrey"
+        ></EditText>
+    <include
+
+        android:id="@+id/item1"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="30dp"
+
+        layout="@layout/gridviewadapter"/>
+    <EditText
+        android:id="@+id/DeliveryDetails"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="300dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingEnd="5dp"
+        android:editable="false"
+        android:text="@string/deliverydetails"
+        android:textColor="@color/inactive"
+        android:background="@color/labelgrey"
+        ></EditText>
+    <EditText
+        android:id="@+id/inactiveAddress"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/DeliveryDetails"
+        android:paddingTop="0dp"
+        android:paddingStart="2dp"
+        android:paddingEnd="10dp"
+        android:editable="false"
+        android:text="@string/inActiveAddress"
+        android:textColor="@color/inactive"
+        >
+    </EditText>
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:text="@string/order"
+        android:onClick="selfDestruct"
+        android:background="@color/activeRed" />
+</RelativeLayout>
