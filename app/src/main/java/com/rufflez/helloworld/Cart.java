@@ -2,26 +2,34 @@ package com.rufflez.helloworld;
 
 import android.graphics.drawable.Drawable;
 
-import java.io.Serializable;
-
 /**
- * Created by hemanth on 2/5/2015.
+ * Created by Mohammed on 04-05-2015.
  */
-public class Product implements Serializable{
-
+public class Cart {
     String id;
     String name;
     String Category;
     double price;
     String desc;
 
-    public Product(String id, String name, String category, double price, String desc, Drawable image) {
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    int qty;
+
+    public Cart(String id, String name, String category, double price, String desc, Drawable image ,int qty) {
         this.id = id;
         this.name = name;
         Category = category;
         this.price = price;
         this.desc = desc;
         this.image = image;
+        this.qty=qty;
     }
 
     public String getName() {
@@ -74,3 +82,4 @@ public class Product implements Serializable{
         this.id = id;
     }
 }
+

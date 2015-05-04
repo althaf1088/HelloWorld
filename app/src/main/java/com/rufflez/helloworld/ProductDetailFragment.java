@@ -1,21 +1,21 @@
 package com.rufflez.helloworld;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
 
-import java.util.ArrayList;
 
-
-
-public class ProductsFragment extends Fragment {
+public class ProductDetailFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -24,21 +24,24 @@ public class ProductsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    ArrayList<Product>products=new ArrayList<Product>();
-
+    private Product product;
     private OnFragmentInteractionListener mListener;
-
+ TextView name,price,desc;
+    ImageView img;
+    Button add;
+    Spinner qty;
+    RelativeLayout info;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ProductsFragment.
+     * @return A new instance of fragment ProductDetailFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProductsFragment newInstance(String param1, String param2) {
-        ProductsFragment fragment = new ProductsFragment();
+    public static ProductDetailFragment newInstance(String param1, String param2) {
+        ProductDetailFragment fragment = new ProductDetailFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -46,9 +49,10 @@ public class ProductsFragment extends Fragment {
         return fragment;
     }
 
-    public ProductsFragment() {
+    public ProductDetailFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,35 +67,29 @@ public class ProductsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.fragment_products, container, false);
-        getproducts();
-        CustomGrid adapter = new CustomGrid(getActivity(), products);
-        GridView grid=(GridView)v.findViewById(R.id.gridView);
-        grid.setAdapter(adapter);
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("product", products.get(position));
-                Fragment fragment = new ProductDetailFragment();
-                fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-
-            }
-        });
-
+        View v= inflater.inflate(R.layout.fragment_product_detail, container, false);
+        product=(Product)getArguments().getSerializable("product");
+        name=(TextView)v.findViewById(R.id.name);
+        price=(TextView)v.findViewById(R.id.price);
+        desc=(TextView)v.findViewById(R.id.desc);
+        add=(Button)v.findViewById(R.id.add);
+        qty=(Spinner)v.findViewById(R.id.spinner);
+        img=(ImageView)v.findViewById(R.id.img);
+        info=(RelativeLayout)v.findViewById(R.id.inforel);
+        info.setOnClickListener(this);
+        add.setOnClickListener(this);
+        init();
         return v;
+
     }
 
-    private void getproducts() {
+    public void init(){
+        name.setText(product.getName());
+        price.setText(product.getPrice()+"");
+        desc.setText(product.getDesc());
+        img.setImageDrawable(product.getImage());
+        qty.setPrompt(getString(R.string.selectqty));
 
-        Product pr=new Product("1", "Superior Birds Nest with Rock Sugar","Canned Food", 45.00, "New Moon superio......", getResources().getDrawable(R.drawable.download));
-        Product pr2=new Product("2", "Superior Birds Nest with Rock salt","Canned Food", 50.00, "New Moon superio......", getResources().getDrawable(R.drawable.download));
-        products.add(pr);
-        products.add(pr2);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -116,6 +114,23 @@ public class ProductsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        img.setVisibility(View.INVISIBLE);
+        desc.setVisibility(View.VISIBLE);
+            Fragment fragment = new Checkout_Fragment_Address();
+
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
+
+
+
+
+
+
     }
 
     /**

@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -50,7 +49,7 @@ public class CustomGrid_Address extends BaseAdapter {
         if (convertView == null) {
 
             grid = new View(mContext);
-            grid = inflater.inflate(R.layout.fragment_checkout, null);
+            grid = inflater.inflate(R.layout.addresslayout, null);
             TextView textView = (TextView) grid.findViewById(R.id.activeAddress);
 
             textView.setText(addressArrayList.get(position).getModifiedAdress());

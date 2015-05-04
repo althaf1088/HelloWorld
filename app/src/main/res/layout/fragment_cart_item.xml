@@ -11,7 +11,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="10dp"/>
 
-    <EditText
+    <TextView
         android:id="@+id/lblItemDes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,11 +22,11 @@
         android:paddingBottom="5dp"
         android:editable="false"
         android:background="#00000000"
-        android:text="@string/item1des"
+
         android:layout_toRightOf="@+id/imageView1"
         >
-    </EditText>
-    <EditText
+    </TextView>
+    <TextView
         android:id="@+id/lblItemVal"
         android:layout_toEndOf="@+id/imageView1"
         android:layout_below="@+id/lblItemDes"
@@ -40,10 +40,10 @@
         android:editable="false"
         android:textStyle="bold"
         android:background="#00000000"
-        android:text="@string/item1Val"
+
         >
-    </EditText>
-    <EditText
+    </TextView>
+    <TextView
         android:id="@+id/qty"
         android:layout_toEndOf="@+id/imageView1"
         android:layout_below="@+id/lblItemVal"
@@ -56,7 +56,7 @@
         android:background="#00000000"
         android:text="@string/qtyl"
         >
-    </EditText>
+    </TextView>
     <EditText
         android:id="@+id/cvvNo"
         android:layout_toEndOf="@+id/qty"

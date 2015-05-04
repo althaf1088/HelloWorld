@@ -2,14 +2,16 @@ package com.rufflez.helloworld;
 
 import android.content.res.Configuration;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Display;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -18,7 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-public class MyActivity extends ActionBarActivity implements OnChildClickListener,ProductsFragment.OnFragmentInteractionListener {
+public class MyActivity extends ActionBarActivity implements OnChildClickListener,OnFragmentInteractionListener {
 
     DrawerLayout mDrawerLayout;
     ExpandableListView mDrawerList;
@@ -30,11 +32,21 @@ RelativeLayout drawerRel;
 
     }
     @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.my, menu);
+        return super.onCreateOptionsMenu(menu);
+
+
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle("GHJ");
+
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer);
         mDrawerList = (ExpandableListView)findViewById(R.id.left_drawer);
         drawerRel=(RelativeLayout)findViewById(R.id.drawerrel);
@@ -67,14 +79,13 @@ RelativeLayout drawerRel;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         mDrawerToggle.syncState();
-        /*Fragment fragment = new ProductsFragment();
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();*/
+        //Fragment fragment = new ProductsFragment();
         Fragment fragment = new Checkout_Fragment_Confirmation();
+
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
 
 
         mDrawerLayout.closeDrawer(drawerRel);
@@ -162,4 +173,5 @@ RelativeLayout drawerRel;
                 Toast.LENGTH_SHORT).show();
         return true;
     }
+
 }
